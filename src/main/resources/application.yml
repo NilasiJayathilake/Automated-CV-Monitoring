@@ -1,3 +1,13 @@
 spring:
   application:
     name: Automated-CV-Monitoring
+  profiles:
+    active: local
+
+google:
+  oauth:
+    redirect-uri:
+    success-redirect-uri:
+    downloads-dir:
+    client-secrets-file: classpath:google-secret.json
+
