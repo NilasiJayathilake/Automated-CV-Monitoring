@@ -18,23 +18,23 @@ public class ResumeAnalysisGenerator {
     private final ChatClient chatClient;
     private final ResumeContextBuilder resumeContextBuilder;
 
-    public ResumeAnalysisDto buildResumeAnalysis() throws IOException {
+    public ResumeAnalysisCompletion buildResumeAnalysis() throws IOException {
         String resumeText = resumeContextBuilder.buildLatestResumeContext();
         long startTime = System.currentTimeMillis();
         log.info("[AI-AGENT-START] ResumeAnalysisGenerator - buildResumeAnalysis started");
 
         String userPrompt = String.format("%s", resumeText);
 
-        ResumeAnalysisDto analysisDto = chatClient.prompt()
+        ResumeAnalysisCompletion completion = chatClient.prompt()
                 .system(SYSTEM_PROMPT)
                 .user(userPrompt)
                 .call()
-                .entity(ResumeAnalysisDto.class);
+                .entity(ResumeAnalysisCompletion.class);
 
         long duration = System.currentTimeMillis() - startTime;
         log.info("[AI-AGENT-END] ResumeAnalysisGenerator - buildResumeAnalysis completed in {}ms", duration);
 
-        return analysisDto;
+        return completion;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.automatedcvmonitoring.domain.resumeanalysis;
+package com.example.automatedcvmonitoring.domain.candidates;
 
 import lombok.Builder;
 import lombok.Data;

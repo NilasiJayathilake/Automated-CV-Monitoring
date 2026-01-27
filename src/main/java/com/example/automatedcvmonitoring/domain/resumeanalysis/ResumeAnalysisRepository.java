@@ -1,4 +1,6 @@
 package com.example.automatedcvmonitoring.domain.resumeanalysis;
 
-public class ResumeAnalysisRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface ResumeAnalysisRepository extends MongoRepository<ResumeAnalysis, String> {
 }

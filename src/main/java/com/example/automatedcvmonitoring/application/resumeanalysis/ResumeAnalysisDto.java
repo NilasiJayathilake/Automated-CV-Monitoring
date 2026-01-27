@@ -1,91 +1,50 @@
 package com.example.automatedcvmonitoring.application.resumeanalysis;
 
-import com.example.automatedcvmonitoring.domain.resumeanalysis.ContactInfo;
-import com.example.automatedcvmonitoring.domain.resumeanalysis.ProfileAssessment;
+import com.example.automatedcvmonitoring.domain.candidates.ContactInfo;
+import com.example.automatedcvmonitoring.domain.resumeanalysis.ResumeAnalysis;
 import lombok.Builder;
 import lombok.Data;
+
 import java.util.List;
 
 @Data
 @Builder
 public class ResumeAnalysisDto {
-
-    private String candidateName;
-    private ContactInfo contactInfo;
+    private String candidateId;
     private String candidateValueProposition;
-    private TechnicalAnalysis technicalAnalysis;
-    private ProfileAssessment profileAssessment;
+    private List<ResumeAnalysis.RoleRecommendation> roleRecommendations;
+    private ResumeAnalysis.TechnicalAnalysis technicalAnalysis;
+    private ResumeAnalysis.ProfileAssessment profileAssessment;
+    private ResumeAnalysis.InterviewerKeyInformation interviewerKeyInformation;
+    private ResumeAnalysis.InterviewQuestions interviewQuestions;
+    private List<ResumeAnalysis.Education> education;
+    private ResumeAnalysis.AdditionalNotes additionalNotes;
 
-
-
-    @Data
-    @Builder
-    public static class TechnicalAnalysis {
-        private List<String> programmingLanguages;
-        private List<String> frameworksLibraries;
-        private List<String> toolsPlatforms;
-        private List<String> certifications;
+    public static ResumeAnalysisDto fromEntity(ResumeAnalysis entity) {
+        return ResumeAnalysisDto.builder()
+                .candidateId(entity.getCandidateId())
+                .candidateValueProposition(entity.getCandidateValueProposition())
+                .roleRecommendations(entity.getRoleRecommendations() != null ? List.copyOf(entity.getRoleRecommendations()) : List.of())
+                .technicalAnalysis(entity.getTechnicalAnalysis())
+                .profileAssessment(entity.getProfileAssessment())
+                .interviewerKeyInformation(entity.getInterviewerKeyInformation())
+                .interviewQuestions(entity.getInterviewQuestions())
+                .education(entity.getEducation() != null ? List.copyOf(entity.getEducation()) : List.of())
+                .additionalNotes(entity.getAdditionalNotes())
+                .build();
     }
 
-    @Data
-    @Builder
-    public static class RoleRecommendation {
-        private String jobTitle;
-        private Integer suitabilityScore;
-        private String justification;
-        private Integer priorityRank;
-    }
-
-
-
-    @Data
-    @Builder
-    public static class InterviewerKeyInformation {
-        private String quickSnapshot;
-        private List<String> talkAboutTopics;
-        private ExpertiseAreas expertiseAreas;
-        private String careerTrajectory;
-        private List<String> potentialConcerns;
-        private List<String> redFlagsToProbe;
-
-        @Data
-        @Builder
-        public static class ExpertiseAreas {
-            private String strongestArea;
-            private List<String> emergingSkills;
-        }
-    }
-
-    @Data
-    @Builder
-    public static class InterviewQuestions {
-        private List<QuestionAnswer> technicalDeepDive;
-        private List<QuestionAnswer> projectSpecific;
-        private List<QuestionAnswer> behavioralSituational;
-        private List<QuestionAnswer> roleFitQuestions;
-        private List<QuestionAnswer> growthMindset;
-
-        @Data
-        @Builder
-        public static class QuestionAnswer {
-            private String question;
-            private String expectedAnswer;
-        }
-    }
-
-    @Data
-    @Builder
-    public static class Education {
-        private String institution;
-        private String degree;
-        private String duration;
-        private List<String> details;
-    }
-
-    @Data
-    @Builder
-    public static class AdditionalNotes {
-        private String redFlags;
-        private String positiveIndicators;
+    public ResumeAnalysis toEntity() {
+        return ResumeAnalysis.builder()
+                .candidateId(candidateId)
+                .candidateValueProposition(candidateValueProposition)
+                .roleRecommendations(roleRecommendations != null ? List.copyOf(roleRecommendations) : List.of())
+                .technicalAnalysis(technicalAnalysis)
+                .profileAssessment(profileAssessment)
+                .interviewerKeyInformation(interviewerKeyInformation)
+                .interviewQuestions(interviewQuestions)
+                .education(education != null ? List.copyOf(education) : List.of())
+                .additionalNotes(additionalNotes)
+                .build();
     }
 }
