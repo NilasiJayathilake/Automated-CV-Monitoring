@@ -1,5 +1,7 @@
 package com.example.automatedcvmonitoring.application.resumeanalysis;
 
+import com.example.automatedcvmonitoring.domain.resumeanalysis.ContactInfo;
+import com.example.automatedcvmonitoring.domain.resumeanalysis.ProfileAssessment;
 import lombok.Builder;
 import lombok.Data;
 import java.util.List;
@@ -12,20 +14,9 @@ public class ResumeAnalysisDto {
     private ContactInfo contactInfo;
     private String candidateValueProposition;
     private TechnicalAnalysis technicalAnalysis;
-    private List<RoleRecommendation> roleRecommendations;
     private ProfileAssessment profileAssessment;
-    private InterviewerKeyInformation interviewerKeyInformation;
-    private InterviewQuestions interviewQuestions;
-    private List<Education> education;
-    private AdditionalNotes additionalNotes;
 
-    @Data
-    @Builder
-    public static class ContactInfo {
-        private String email;
-        private String phone;
-        private String linkedin;
-    }
+
 
     @Data
     @Builder
@@ -45,12 +36,7 @@ public class ResumeAnalysisDto {
         private Integer priorityRank;
     }
 
-    @Data
-    @Builder
-    public static class ProfileAssessment {
-        private List<String> keyStrengths;
-        private String profileSummary;
-    }
+
 
     @Data
     @Builder

@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.google.apis:google-api-services-gmail:v1-rev20240520-2.0.0'
     implementation 'com.google.auth:google-auth-library-oauth2-http:1.41.0'
 
-    //Pdf
+    //Pdf Reader
     implementation 'org.apache.pdfbox:pdfbox:2.0.32'
 
     compileOnly 'org.projectlombok:lombok'

@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ResumeAnalysisGenerator {
     private static final String SYSTEM_PROMPT = MarkdownFileReader
-            .readFileContent("prompts/resume_analysis_system_prompt.md");
+            .readFileContent("prompts/cv-analyzer-prompt.md");
     private final ChatClient chatClient;
     private final ResumeContextBuilder resumeContextBuilder;
 
