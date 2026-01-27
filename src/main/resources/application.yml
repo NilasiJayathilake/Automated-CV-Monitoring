@@ -3,7 +3,12 @@ spring:
     name: Automated-CV-Monitoring
   profiles:
     active: local
-
+  ai:
+    openai:
+      api-key:
+      chat:
+        options:
+          model: gpt-4.1-mini
 google:
   oauth:
     redirect-uri:
@@ -11,3 +16,6 @@ google:
     downloads-dir:
     client-secrets-file: classpath:google-secret.json
 
+resume:
+    storage:
+        base-directory:
