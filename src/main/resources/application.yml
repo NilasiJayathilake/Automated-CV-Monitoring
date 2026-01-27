@@ -3,6 +3,10 @@ spring:
     name: Automated-CV-Monitoring
   profiles:
     active: local
+  data:
+    mongodb:
+      uri:
+      auto-index-creation: true
   ai:
     openai:
       api-key:

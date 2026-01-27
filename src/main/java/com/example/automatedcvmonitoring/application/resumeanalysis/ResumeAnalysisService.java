@@ -7,10 +7,12 @@ import com.example.automatedcvmonitoring.domain.candidates.Candidate;
 import com.example.automatedcvmonitoring.domain.candidates.CandidateRepository;
 import com.example.automatedcvmonitoring.domain.resumeanalysis.ResumeAnalysisRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ResumeAnalysisService {
@@ -26,6 +28,8 @@ public class ResumeAnalysisService {
             String candidateId = candidate.getId();
             ResumeAnalysisDto resumeAnalysisDto = resumeAnalysis.toDto(candidateId);
             resumeAnalysisRepository.save(resumeAnalysisDto.toEntity());
+            log.info("Resume analysis completed {}", resumeAnalysisDto);
+
         } catch (IOException e) {
             throw new RuntimeException("Unable to find any new CVs to Analyze", e);
         }

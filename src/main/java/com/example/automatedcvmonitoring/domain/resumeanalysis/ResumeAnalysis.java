@@ -23,6 +23,11 @@ public class ResumeAnalysis {
     private TechnicalAnalysis technicalAnalysis;
     private ProfileAssessment profileAssessment;
     private InterviewQuestions interviewQuestions;
+    private List<RoleRecommendation> roleRecommendations;
+    private InterviewerKeyInformation interviewerKeyInformation;
+    private List<Education> education;
+    private AdditionalNotes additionalNotes;
+
 
     @Data
     @Builder
