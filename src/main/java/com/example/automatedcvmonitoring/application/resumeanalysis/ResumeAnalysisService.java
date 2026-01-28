@@ -20,7 +20,7 @@ public class ResumeAnalysisService {
     private final CandidateRepository candidateRepository;
     private final ResumeAnalysisRepository resumeAnalysisRepository;
 
-    public void analyzeResume(){
+    public String analyzeResume(){
         try {
             ResumeAnalysisCompletion resumeAnalysis = resumeAnalysisGenerator.buildResumeAnalysis();
             CandidateDto candidateDto = resumeAnalysis.toCandidateDto();
@@ -28,11 +28,18 @@ public class ResumeAnalysisService {
             String candidateId = candidate.getId();
             ResumeAnalysisDto resumeAnalysisDto = resumeAnalysis.toDto(candidateId);
             resumeAnalysisRepository.save(resumeAnalysisDto.toEntity());
-            log.info("Resume analysis completed {}", resumeAnalysisDto);
+            log.info("Resume analysis completed for {}", candidateId);
+            return candidateId;
 
         } catch (IOException e) {
             throw new RuntimeException("Unable to find any new CVs to Analyze", e);
         }
+    }
+
+    public ResumeAnalysisDto fetchAnalysis(String candidateId) {
+        return resumeAnalysisRepository.findByCandidateId(candidateId)
+                .map(ResumeAnalysisDto::fromEntity)
+                .orElseThrow(() -> new IllegalArgumentException("Resume analysis not found for candidateId: " + candidateId));
     }
 
 }

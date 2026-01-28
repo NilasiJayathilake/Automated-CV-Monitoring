@@ -1,13 +1,16 @@
 package com.example.automatedcvmonitoring.domain.resumeanalysis;
 
-import com.example.automatedcvmonitoring.domain.candidates.ContactInfo;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -27,6 +30,10 @@ public class ResumeAnalysis {
     private InterviewerKeyInformation interviewerKeyInformation;
     private List<Education> education;
     private AdditionalNotes additionalNotes;
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
 
     @Data
@@ -36,15 +43,13 @@ public class ResumeAnalysis {
         private List<String> frameworksLibraries;
         private List<String> toolsPlatforms;
         private List<String> certifications;
-        private List<RoleRecommendation> roleRecommendations;
-        private List<Education> education;
-        private AdditionalNotes additionalNotes;
     }
 
     @Data
     @Builder
     public static class RoleRecommendation {
         private String jobTitle;
+        @JsonPropertyDescription("Score indicating how suitable the candidate is for the role, on a scale from 1 to 10.")
         private Integer suitabilityScore;
         private String justification;
         private Integer priorityRank;
@@ -64,8 +69,8 @@ public class ResumeAnalysis {
         private String quickSnapshot;
         private List<String> talkAboutTopics;
         private ExpertiseAreas expertiseAreas;
-        private String careerTrajectory;
         private List<String> potentialConcerns;
+        private List<String> growthIndicators;
         private List<String> redFlagsToProbe;
 
         @Data

@@ -5,6 +5,7 @@ import com.example.automatedcvmonitoring.domain.resumeanalysis.ResumeAnalysis;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,6 +20,8 @@ public class ResumeAnalysisDto {
     private ResumeAnalysis.InterviewQuestions interviewQuestions;
     private List<ResumeAnalysis.Education> education;
     private ResumeAnalysis.AdditionalNotes additionalNotes;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public static ResumeAnalysisDto fromEntity(ResumeAnalysis entity) {
         return ResumeAnalysisDto.builder()
@@ -31,6 +34,8 @@ public class ResumeAnalysisDto {
                 .interviewQuestions(entity.getInterviewQuestions())
                 .education(entity.getEducation() != null ? List.copyOf(entity.getEducation()) : List.of())
                 .additionalNotes(entity.getAdditionalNotes())
+                .createdAt(entity.getCreatedAt())
+                .updatedAt(entity.getUpdatedAt())
                 .build();
     }
 
